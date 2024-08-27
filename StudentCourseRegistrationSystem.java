@@ -2,15 +2,13 @@ import java.util.*;
 
 public class StudentCourseRegistrationSystem {
 
-    // Course class
     static class Course {
         private String code;
         private String title;
         private String description;
         private int capacity;
         private int enrolled;
-
-        // Constructor
+        
         public Course(String code, String title, String description, int capacity) {
             this.code = code;
             this.title = title;
@@ -18,8 +16,7 @@ public class StudentCourseRegistrationSystem {
             this.capacity = capacity;
             this.enrolled = 0;
         }
-
-        // Getters and setters
+        
         public String getCode() {
             return code;
         }
@@ -63,20 +60,17 @@ public class StudentCourseRegistrationSystem {
         }
     }
 
-    // Student class
     static class Student {
         private String id;
         private String name;
         private Set<String> registeredCourses;
 
-        // Constructor
         public Student(String id, String name) {
             this.id = id;
             this.name = name;
             this.registeredCourses = new HashSet<>();
         }
 
-        // Getters
         public String getId() {
             return id;
         }
@@ -89,37 +83,31 @@ public class StudentCourseRegistrationSystem {
             return registeredCourses;
         }
 
-        // Register for a course
         public void registerCourse(String courseCode) {
             registeredCourses.add(courseCode);
         }
 
-        // Drop a course
         public void dropCourse(String courseCode) {
             registeredCourses.remove(courseCode);
         }
     }
 
-    // RegistrationSystem class
     static class RegistrationSystem {
         private Map<String, Course> courses;
         private Map<String, Student> students;
-
-        // Constructor
+        
         public RegistrationSystem() {
             courses = new HashMap<>();
             students = new HashMap<>();
             initializeCourses();
         }
 
-        // Initialize some courses
         private void initializeCourses() {
             courses.put("CS101", new Course("CS101", "Introduction to Programming", "Learn the basics of programming.", 30));
             courses.put("MATH201", new Course("MATH201", "Calculus I", "An introduction to calculus.", 25));
             courses.put("BIO301", new Course("BIO301", "Biology Fundamentals", "Study the fundamentals of biology.", 20));
         }
 
-        // Add a student
         public void addStudent(String id, String name) {
             if (students.containsKey(id)) {
                 System.out.println("Student with this ID already exists.");
@@ -128,7 +116,6 @@ public class StudentCourseRegistrationSystem {
             Student newStudent = new Student(id, name);
             students.put(id, newStudent);
 
-            // Display available courses for selection
             displayCourses();
             Scanner scanner = new Scanner(System.in);
 
@@ -148,7 +135,6 @@ public class StudentCourseRegistrationSystem {
             }
         }
 
-        // Display available courses
         public void displayCourses() {
             System.out.println("\nAvailable Courses:");
             System.out.printf("%-10s %-30s %-40s %5s %10s\n", "Code", "Title", "Description", "Capacity", "Enrolled");
@@ -156,8 +142,7 @@ public class StudentCourseRegistrationSystem {
                 System.out.println(course);
             }
         }
-
-        // Register a student for a course
+        
         public void registerStudent(String studentId, String courseCode) {
             Student student = students.get(studentId);
             Course course = courses.get(courseCode);
@@ -181,7 +166,6 @@ public class StudentCourseRegistrationSystem {
             }
         }
 
-        // Drop a course for a student
         public void dropCourse(String studentId, String courseCode) {
             Student student = students.get(studentId);
             Course course = courses.get(courseCode);
@@ -205,7 +189,6 @@ public class StudentCourseRegistrationSystem {
             }
         }
 
-        // Display student registration
         public void displayStudentCourses(String studentId) {
             Student student = students.get(studentId);
 
@@ -223,7 +206,6 @@ public class StudentCourseRegistrationSystem {
         }
     }
 
-    // Main method
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         RegistrationSystem system = new RegistrationSystem();
@@ -238,7 +220,7 @@ public class StudentCourseRegistrationSystem {
             System.out.println("6. Exit");
             System.out.print("Choose an option: ");
             int choice = scanner.nextInt();
-            scanner.nextLine();  // Consume newline
+            scanner.nextLine();
 
             switch (choice) {
                 case 1:
@@ -277,7 +259,6 @@ public class StudentCourseRegistrationSystem {
                     System.out.println("Invalid choice. Please try again.");
             }
 
-            // Ask if the user wants to continue
             System.out.print("Do you want to continue? (yes/no): ");
             String continueChoice = scanner.nextLine().trim().toLowerCase();
             if (!continueChoice.equals("yes")) {
