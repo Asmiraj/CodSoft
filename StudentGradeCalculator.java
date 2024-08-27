@@ -6,35 +6,31 @@ public class StudentGradeCalculator {
 
         System.out.print("Enter the number of subjects: ");
         int numSubjects = scanner.nextInt();
-        scanner.nextLine(); // Consume newline
+        scanner.nextLine(); 
 
         String[] subjects = new String[numSubjects];
         int[] marks = new int[numSubjects];
         int totalMarks = 0;
-
-        // Input subject names and marks
+        
         for (int i = 0; i < numSubjects; i++) {
             System.out.print("Enter the name of subject " + (i + 1) + ": ");
             subjects[i] = scanner.nextLine();
 
             System.out.print("Enter marks for " + subjects[i] + " (out of 100): ");
             marks[i] = scanner.nextInt();
-            scanner.nextLine(); // Consume newline
+            scanner.nextLine(); 
 
-            // Validate input
             while (marks[i] < 0 || marks[i] > 100) {
                 System.out.print("Invalid marks. Enter marks for " + subjects[i] + " (out of 100): ");
                 marks[i] = scanner.nextInt();
-                scanner.nextLine(); // Consume newline
+                scanner.nextLine(); 
             }
 
             totalMarks += marks[i];
         }
 
-        // Calculate average percentage
         double averagePercentage = (double) totalMarks / numSubjects;
 
-        // Determine grade based on average percentage
         String grade;
         if (averagePercentage >= 90) {
             grade = "A";
@@ -48,7 +44,6 @@ public class StudentGradeCalculator {
             grade = "F";
         }
 
-        // Display results in tabular format
         System.out.println("\nSubject-wise Marks:");
         System.out.println("---------------------------------------------------");
         System.out.printf("%-20s %-10s%n", "Subject", "Marks");
@@ -58,7 +53,6 @@ public class StudentGradeCalculator {
         }
         System.out.println("---------------------------------------------------");
 
-        // Display total marks, average percentage, and grade
         System.out.println("Total Marks: " + totalMarks);
         System.out.println("Average Percentage: " + averagePercentage + "%");
         System.out.println("Grade: " + grade);
